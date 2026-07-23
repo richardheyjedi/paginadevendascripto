@@ -1067,14 +1067,16 @@ a {
 }
 
 .exit-badge-tag {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--apple-blue);
   background: rgba(0, 102, 204, 0.08);
-  padding: 4px 12px;
+  padding: 4px 14px;
   border-radius: 20px;
   margin-bottom: 16px;
 }
@@ -1082,18 +1084,25 @@ a {
 .exit-title {
   font-family: var(--font-sf-display);
   font-size: 26px;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--apple-ink);
   letter-spacing: -0.02em;
-  line-height: 1.15;
+  line-height: 1.18;
   margin-bottom: 12px;
+  opacity: 1 !important;
+  filter: none !important;
+  transform: none !important;
 }
 
 .exit-desc {
+  font-family: var(--font-sf-text);
   font-size: 15px;
-  color: var(--apple-ink-muted);
+  color: var(--apple-ink-light);
   line-height: 1.5;
   margin-bottom: 24px;
+  opacity: 1 !important;
+  filter: none !important;
+  transform: none !important;
 }
 
 .exit-benefits-list {
@@ -1848,8 +1857,8 @@ html, body {
 <div class="exit-overlay" id="exit-modal">
   <div class="exit-modal-box">
     <button class="exit-close-btn" onclick="closeExitModal()" aria-label="Fechar">✕</button>
-    <span class="exit-badge-tag" style="display:inline-flex;align-items:center;gap:4px;">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--apple-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c0 5-5 7-5 11a5 5 0 0 0 10 0c0-4-5-6-5-11z"></path></svg>
+    <span class="exit-badge-tag">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--apple-blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
       ESPERA! ÚLTIMA CHANCE
     </span>
     <h3 class="exit-title">Garanta o seu desconto antes de sair.</h3>
@@ -1975,9 +1984,7 @@ function initCopyTextAnimation() {
     ".feat-title",
     ".feat-desc",
     ".plan-title-apple",
-    ".faq-q-text",
-    ".exit-title",
-    ".exit-desc"
+    ".faq-q-text"
   ];
 
   textSelectors.forEach(selector => {
