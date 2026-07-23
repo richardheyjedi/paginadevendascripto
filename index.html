@@ -507,31 +507,11 @@ a {
   margin-top: 2px;
 }
 
-/* ── TILE 2: RESULTADOS REAIS (PARCHMENT CANVAS) ── */
+/* ── TILE 2: RESULTADOS REAIS (PARCHMENT CANVAS - STRICT DESIGN.MD) ── */
 .tile-parchment {
   background: var(--apple-parchment);
   color: var(--apple-ink);
   padding: 90px 0;
-}
-
-.section-headline {
-  font-family: var(--font-sf-display);
-  font-size: clamp(34px, 4.2vw, 56px);
-  font-weight: 600;
-  line-height: 1.07;
-  letter-spacing: -0.028em;
-  text-align: center;
-  color: var(--apple-ink);
-  margin-bottom: 14px;
-}
-
-.section-subcopy {
-  font-size: 19px;
-  color: var(--apple-ink-muted);
-  text-align: center;
-  max-width: 580px;
-  margin: 0 auto 60px;
-  line-height: 1.47;
 }
 
 .cards-grid-3 {
@@ -542,18 +522,19 @@ a {
 }
 
 .apple-card {
-  background: var(--apple-canvas);
-  border-radius: var(--radius-lg);
+  background: #ffffff;
+  border-radius: 18px;
   padding: 32px 28px;
-  border: 1px solid var(--apple-hairline-soft);
+  border: 1px solid var(--apple-hairline);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.25s ease;
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .apple-card:hover {
   transform: translateY(-4px);
+  border-color: #d2d2d7;
 }
 
 .card-user-row {
@@ -564,38 +545,40 @@ a {
 }
 
 .card-avatar-img {
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--apple-canvas);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--apple-hairline);
 }
 
 .verified-tag {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--apple-blue);
   background: rgba(0, 102, 204, 0.08);
-  padding: 2px 8px;
-  border-radius: 12px;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
   margin-top: 4px;
 }
 
 .trust-rating-stars {
   display: flex;
   gap: 2px;
-  color: #ffb800;
+  color: var(--apple-blue);
+  font-size: 13px;
   margin-top: 2px;
 }
 
 .card-quote {
-  font-size: 15px;
-  color: var(--apple-ink-light);
-  line-height: 1.55;
+  font-family: var(--font-sf-text);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--apple-ink);
+  line-height: 1.47;
   margin-bottom: 24px;
 }
 
@@ -609,18 +592,18 @@ a {
 
 .card-pair {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--apple-ink-muted);
 }
 
 .card-roi {
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 600;
   color: var(--apple-blue);
   letter-spacing: -0.02em;
   background: rgba(0, 102, 204, 0.08);
-  padding: 4px 10px;
-  border-radius: 8px;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
 }
 
 .trust-metrics-strip {
@@ -628,15 +611,14 @@ a {
   align-items: center;
   justify-content: center;
   gap: 28px;
-  background: var(--apple-canvas);
+  background: #ffffff;
   border: 1px solid var(--apple-hairline);
   padding: 16px 28px;
   border-radius: var(--radius-pill);
   margin-top: 36px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--apple-ink);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
   flex-wrap: wrap;
 }
 
@@ -1483,7 +1465,7 @@ html, body {
               </div>
             </div>
           </div>
-          <div class="trust-rating-stars" style="margin-bottom:12px;">★★★★★</div>
+          <div class="trust-rating-stars" style="margin-bottom:12px;">★★★★★ 5.0</div>
           <p class="card-quote">"Entrei com R$700 e minha banca chegou a R$4.099 seguindo os sinais. Os alvos foram batendo sozinhos. Nunca achei que seria tão simples."</p>
         </div>
         <div class="card-footer">
@@ -1509,7 +1491,7 @@ html, body {
               </div>
             </div>
           </div>
-          <div class="trust-rating-stars" style="margin-bottom:12px;">★★★★★</div>
+          <div class="trust-rating-stars" style="margin-bottom:12px;">★★★★★ 5.0</div>
           <p class="card-quote">"A melhor decisão foi entrar para o ACS System. Os sinais são claros, você sabe exatamente onde entrar. Os alvos batem automático."</p>
         </div>
         <div class="card-footer">
@@ -1535,7 +1517,7 @@ html, body {
               </div>
             </div>
           </div>
-          <div class="trust-rating-stars" style="margin-bottom:12px;">★★★★★</div>
+          <div class="trust-rating-stars" style="margin-bottom:12px;">★★★★★ 5.0</div>
           <p class="card-quote">"Operei SAND com 20x seguindo o sinal e foi a +202%. O take profit realizou o lucro sem eu fazer nada. Excelente ferramenta."</p>
         </div>
         <div class="card-footer">
