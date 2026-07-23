@@ -965,7 +965,22 @@ a {
   color: var(--apple-ink-muted);
 }
 
-/* ── COPY.JSX / GREYLOOM STYLE LINE REVEAL ANIMATION ── */
+/* ── CINEMATIC WORD & LINE REVEAL ANIMATIONS ── */
+.copy-word-wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  margin-right: 0.24em;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+
+.copy-word-inner {
+  display: inline-block;
+  will-change: transform, opacity, filter;
+  transform-origin: 0% 100%;
+}
+
 .copy-line-wrapper {
   overflow: hidden;
   display: block;
@@ -973,15 +988,13 @@ a {
 
 .copy-line-content {
   display: block;
-  transform: translateY(100%);
-  will-change: transform;
+  will-change: transform, opacity, filter;
 }
 
-/* GSAP Scroll Reveal */
+/* GSAP Scroll Reveal Base */
 .gsap-reveal {
   opacity: 0;
-  transform: translateY(20px);
-  will-change: opacity, transform;
+  will-change: opacity, transform, filter;
 }
 
 /* ── APPLE EXIT INTENT MODAL POPUP ── */
@@ -1920,7 +1933,7 @@ function closeExitModal() {
 
 window.addEventListener("load", initExitIntent);
 
-// ── EXACT COPY.JSX / GREYLOOM LINE REVEAL SCROLL ANIMATION ──
+// ── CINEMATIC WORD-BY-WORD & BLUR-FADE SCROLL ANIMATIONS ──
 function initCopyTextAnimation() {
   if (typeof gsap === "undefined") return;
   gsap.registerPlugin(ScrollTrigger);
@@ -1947,33 +1960,80 @@ function initCopyTextAnimation() {
       if (el.dataset.copyAnimated) return;
       el.dataset.copyAnimated = "true";
 
+      // If element has simple text without child tags (svg, img), split into words for cinematic staggered entry
+      if (!el.querySelector("svg") && !el.querySelector("img") && !el.querySelector("input") && !el.querySelector("button")) {
+        const text = el.innerText.trim();
+        const words = text.split(/\s+/);
+
+        if (words.length > 0) {
+          el.innerHTML = words.map(w => `<span class="copy-word-wrap"><span class="copy-word-inner">${w}</span></span>`).join(" ");
+          const wordInners = el.querySelectorAll(".copy-word-inner");
+
+          gsap.set(wordInners, {
+            y: "115%",
+            opacity: 0,
+            filter: "blur(12px)",
+            rotateX: -12
+          });
+
+          gsap.to(wordInners, {
+            y: "0%",
+            opacity: 1,
+            filter: "blur(0px)",
+            rotateX: 0,
+            duration: 0.95,
+            stagger: 0.03,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 86%",
+              once: true
+            }
+          });
+          return;
+        }
+      }
+
+      // Fallback for complex inner HTML elements
       const originalHTML = el.innerHTML;
       el.innerHTML = `<span class="copy-line-wrapper"><span class="copy-line-content">${originalHTML}</span></span>`;
       const lineContent = el.querySelector(".copy-line-content");
 
-      gsap.set(lineContent, { y: "100%" });
+      gsap.set(lineContent, {
+        y: "100%",
+        opacity: 0,
+        filter: "blur(10px)"
+      });
 
       gsap.to(lineContent, {
         y: "0%",
-        duration: 1,
-        stagger: 0.1,
-        ease: "power4.out",
+        opacity: 1,
+        filter: "blur(0px)",
+        duration: 1.0,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: el,
-          start: "top 80%",
+          start: "top 86%",
           once: true
         }
       });
     });
   });
 
-  // Base element reveal
+  // Base element reveal with smooth blur + Y translation lift
   document.querySelectorAll(".gsap-reveal").forEach(el => {
+    gsap.set(el, {
+      opacity: 0,
+      y: 35,
+      filter: "blur(10px)"
+    });
+
     gsap.to(el, {
       opacity: 1,
       y: 0,
-      duration: 0.8,
-      ease: "power2.out",
+      filter: "blur(0px)",
+      duration: 1.05,
+      ease: "power3.out",
       scrollTrigger: {
         trigger: el,
         start: "top 88%",
