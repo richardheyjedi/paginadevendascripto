@@ -651,47 +651,132 @@ a {
   letter-spacing: 0.1em;
 }
 
-/* ── TILE 3: COMO FUNCIONA (DARK TILE 2) ── */
+/* ── TILE 3: COMO FUNCIONA (ULTRA-PREMIUM STEP FLOW) ── */
 .tile-dark-2 {
-  background: var(--apple-tile-dark-2);
+  background: #080b10;
+  background-image: radial-gradient(circle at 50% 0%, rgba(0, 102, 204, 0.15) 0%, transparent 70%);
   color: #ffffff;
-  padding: 90px 0;
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .steps-stack {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  gap: 28px;
+  position: relative;
+  z-index: 2;
+  margin-top: 48px;
 }
 
 .step-item {
-  background: #1f1f21;
-  border-radius: var(--radius-lg);
-  padding: 36px 28px;
-  border: 1px solid #2c2c2e;
+  background: rgba(18, 22, 31, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 24px;
+  padding: 36px 30px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(41, 151, 255, 0.35);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
+  position: relative;
 }
 
-.step-num {
-  font-family: var(--font-sf-display);
-  font-size: 24px;
-  font-weight: 600;
-  color: var(--apple-blue-dark);
-  margin-bottom: 16px;
+.step-item:hover {
+  transform: translateY(-8px);
+  border-color: rgba(41, 151, 255, 0.5);
+  box-shadow: 0 25px 60px rgba(0, 102, 204, 0.25);
+}
+
+.step-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.step-badge {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: #2997ff;
+  background: rgba(41, 151, 255, 0.12);
+  border: 1px solid rgba(41, 151, 255, 0.25);
+  padding: 5px 14px;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.step-icon-box {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2997ff;
 }
 
 .step-head {
   font-family: var(--font-sf-display);
-  font-size: 21px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 700;
   color: #ffffff;
   margin-bottom: 12px;
   letter-spacing: -0.015em;
+  line-height: 1.25;
 }
 
 .step-body {
   font-size: 15px;
-  color: #cccccc;
-  line-height: 1.5;
+  color: #a1a1a6;
+  line-height: 1.55;
+  margin-bottom: 24px;
+}
+
+.step-visual-preview {
+  background: rgba(8, 11, 16, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.step-visual-tag {
+  color: #ffffff;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.step-visual-status {
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.step-visual-status.blue {
+  color: #2997ff;
+  background: rgba(41, 151, 255, 0.15);
+}
+
+.step-visual-status.green {
+  color: #34c759;
+  background: rgba(52, 199, 89, 0.15);
 }
 
 /* ── TILE 4: TUDO INCLUÍDO (WHITE CANVAS) ── */
@@ -1547,26 +1632,76 @@ html, body {
 <!-- TILE 3: COMO FUNCIONA (DARK TILE 2) -->
 <section class="tile-dark-2" id="como-funciona">
   <div class="wrap">
-    <h2 class="section-headline gsap-reveal" style="color:#ffffff;">3 passos para lucrar.</h2>
-    <p class="section-subcopy gsap-reveal" style="color:#cccccc;">O aplicativo faz o trabalho pesado de análise gráfica por você.</p>
+    <div style="text-align:center;">
+      <h2 class="section-headline gsap-reveal" style="color:#ffffff;">3 passos para lucrar.</h2>
+      <p class="section-subcopy gsap-reveal" style="color:#a1a1a6;">O sistema ACS SYSTEM faz o trabalho pesado de análise gráfica por você.</p>
+    </div>
 
     <div class="steps-stack">
+      <!-- PASSO 1 -->
       <div class="step-item gsap-reveal">
-        <div class="step-num">01</div>
-        <h3 class="step-head">Receba o sinal no app</h3>
-        <p class="step-body">Nossa IA analisa RSI, MACD e EMA continuamente. O sinal surge com par, entrada, alavancagem e alvos definidos.</p>
+        <div>
+          <div class="step-header-row">
+            <span class="step-badge">
+              <span class="pulse-dot"></span>
+              PASSO 01
+            </span>
+            <div class="step-icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+          </div>
+          <h3 class="step-head">Receba o sinal no app</h3>
+          <p class="step-body">Nossa inteligência artificial analisa RSI, MACD e EMA continuamente. O sinal surge com par, entrada, alavancagem e alvos calculados.</p>
+        </div>
+        <div class="step-visual-preview">
+          <span class="step-visual-tag">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#2997ff" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            BTC/USDT
+          </span>
+          <span class="step-visual-status blue">SINAL DETECTADO</span>
+        </div>
       </div>
 
+      <!-- PASSO 2 -->
       <div class="step-item gsap-reveal">
-        <div class="step-num">02</div>
-        <h3 class="step-head">Abra a operação</h3>
-        <p class="step-body">Copie os dados na Bybit ou Binance. Leva menos de 2 minutos. Nosso curso incluso ensina a configurar tudo do zero.</p>
+        <div>
+          <div class="step-header-row">
+            <span class="step-badge">PASSO 02</span>
+            <div class="step-icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            </div>
+          </div>
+          <h3 class="step-head">Abra a operação</h3>
+          <p class="step-body">Copie os dados para sua conta na Bybit ou Binance. Leva menos de 2 minutos. Nossa plataforma ensina a configurar tudo com 1 clique.</p>
+        </div>
+        <div class="step-visual-preview">
+          <span class="step-visual-tag">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            COPIAR DADOS
+          </span>
+          <span class="step-visual-status blue">BYBIT / BINANCE</span>
+        </div>
       </div>
 
+      <!-- PASSO 3 -->
       <div class="step-item gsap-reveal">
-        <div class="step-num">03</div>
-        <h3 class="step-head">Os alvos batem sozinhos</h3>
-        <p class="step-body">O app monitora o preço a cada 30 segundos. Quando um alvo é atingido, o lucro é realizado sem você precisar acompanhar.</p>
+        <div>
+          <div class="step-header-row">
+            <span class="step-badge">PASSO 03</span>
+            <div class="step-icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+            </div>
+          </div>
+          <h3 class="step-head">Os alvos batem sozinhos</h3>
+          <p class="step-body">O sistema monitora o preço 24h por dia. Quando a operação cruza um alvo, o lucro é realizado automaticamente sem você precisar acompanhar.</p>
+        </div>
+        <div class="step-visual-preview">
+          <span class="step-visual-tag">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#34c759" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            ALVO #3 ATINGIDO
+          </span>
+          <span class="step-visual-status green">+40.8% LUCRO</span>
+        </div>
       </div>
     </div>
   </div>
