@@ -986,6 +986,12 @@ a {
   align-items: center;
 }
 
+.faq-q-text {
+  text-align: left;
+  flex: 1;
+  padding-right: 16px;
+}
+
 .faq-apple-btn:hover {
   color: var(--apple-blue-dark);
 }
@@ -1864,17 +1870,17 @@ html, body {
     <div class="faq-apple-container">
       <div class="faq-apple-item gsap-reveal">
         <button class="faq-apple-btn" onclick="toggleAppleFaq(this)">
-          Preciso saber de cripto para usar o app?
+          <span class="faq-q-text">Preciso saber de cripto para usar o app?</span>
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-apple-ans">
-          <p>Não. O Alpha Cripto foi feito para iniciantes e experientes. Você recebe par, entrada, alavancagem e alvos prontos. A Academia Alpha Cripto ensina tudo do zero.</p>
+          <p>Não. O ACS SYSTEM foi feito para iniciantes e experientes. Você recebe par, entrada, alavancagem e alvos prontos. A Academia ACS System ensina tudo do zero.</p>
         </div>
       </div>
 
       <div class="faq-apple-item gsap-reveal">
         <button class="faq-apple-btn" onclick="toggleAppleFaq(this)">
-          Os targets realmente batem sozinhos?
+          <span class="faq-q-text">Os targets realmente batem sozinhos?</span>
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-apple-ans">
@@ -1884,7 +1890,7 @@ html, body {
 
       <div class="faq-apple-item gsap-reveal">
         <button class="faq-apple-btn" onclick="toggleAppleFaq(this)">
-          Qual exchange devo usar?
+          <span class="faq-q-text">Qual exchange devo usar?</span>
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-apple-ans">
@@ -1894,7 +1900,7 @@ html, body {
 
       <div class="faq-apple-item gsap-reveal">
         <button class="faq-apple-btn" onclick="toggleAppleFaq(this)">
-          Quanto capital preciso para começar?
+          <span class="faq-q-text">Quanto capital preciso para começar?</span>
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-apple-ans">
@@ -1904,7 +1910,7 @@ html, body {
 
       <div class="faq-apple-item gsap-reveal">
         <button class="faq-apple-btn" onclick="toggleAppleFaq(this)">
-          Tem garantia de reembolso?
+          <span class="faq-q-text">Tem garantia de reembolso?</span>
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-apple-ans">
@@ -1914,11 +1920,11 @@ html, body {
 
       <div class="faq-apple-item gsap-reveal">
         <button class="faq-apple-btn" onclick="toggleAppleFaq(this)">
-          O acesso é pelo celular ou computador?
+          <span class="faq-q-text">O acesso é pelo celular ou computador?</span>
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-apple-ans">
-          <p>Os dois. O Alpha Cripto é um app web responsivo que funciona em qualquer navegador no celular, tablet ou computador.</p>
+          <p>Os dois. O ACS SYSTEM é um app web responsivo que funciona em qualquer navegador no celular, tablet ou computador.</p>
         </div>
       </div>
     </div>
@@ -2085,7 +2091,7 @@ function initCopyTextAnimation() {
     ".feat-title",
     ".feat-desc",
     ".plan-title-apple",
-    ".faq-apple-btn",
+    ".faq-q-text",
     ".exit-title",
     ".exit-desc"
   ];
