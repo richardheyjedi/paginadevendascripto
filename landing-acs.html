@@ -1,0 +1,2027 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="ACS SYSTEM — O sistema completo de sinais cripto com inteligência artificial. Targets automáticos e alavancagem de alta precisão. Acesse agora."/>
+<title>ACS SYSTEM — Sinais Inteligentes de Criptomoedas com IA</title>
+
+<!-- Apple Typography: SF Pro Fallback Inter -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Deferred GSAP Animations -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<style>
+/* ── APPLE DESIGN SYSTEM TOKENS ── */
+:root {
+  /* Colors */
+  --apple-blue: #0066cc;
+  --apple-blue-hover: #0071e3;
+  --apple-blue-dark: #2997ff;
+  
+  --apple-ink: #1d1d1f;
+  --apple-ink-muted: #86868b;
+  --apple-ink-light: #6e6e73;
+  
+  --apple-canvas: #ffffff;
+  --apple-parchment: #f5f5f7;
+  --apple-tile-dark: #000000;
+  --apple-tile-dark-2: #161617;
+  --apple-tile-dark-3: #222224;
+  
+  --apple-hairline: #d2d2d7;
+  --apple-hairline-soft: #e5e5e7;
+  
+  /* Typography */
+  --font-sf-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+  --font-sf-text: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-pill: 9999px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--apple-canvas);
+  color: var(--apple-ink);
+  font-family: var(--font-sf-text);
+  font-size: 17px;
+  line-height: 1.47;
+  letter-spacing: -0.022em;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  padding-top: 68px;
+}
+
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── PROMINENT STICKY TOP COUNTDOWN BAR (FIXED ON SCROLL) ── */
+.sticky-countdown-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  background: rgba(4, 10, 18, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 2px solid var(--apple-blue);
+  height: 68px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 8px 32px rgba(0, 102, 204, 0.35);
+}
+
+.sticky-countdown-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sticky-timer-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 17px;
+  color: #ffffff;
+}
+
+.sticky-timer-text {
+  font-family: var(--font-sf-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-size: 17px;
+}
+
+.sticky-timer-digits {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  font-weight: 800;
+  color: #ffffff;
+  background: var(--apple-blue);
+  padding: 6px 20px;
+  border-radius: 12px;
+  letter-spacing: 0.06em;
+  box-shadow: 0 0 25px rgba(0, 102, 204, 0.6);
+}
+
+.sticky-cta-btn {
+  background: var(--apple-blue);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 24px;
+  border-radius: var(--radius-pill);
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0, 102, 204, 0.4);
+}
+
+.sticky-cta-btn:hover {
+  background: var(--apple-blue-hover);
+  transform: translateY(-1px);
+}
+
+.sticky-cta-btn:active {
+  transform: scale(0.95);
+}
+
+/* ── GLOBAL TOP NAV (APPLE BLACK BAR) ── */
+.global-nav {
+  position: relative;
+  z-index: 100;
+  background: var(--apple-tile-dark);
+  height: 44px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.global-nav-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-logo-img {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  filter: invert(1) hue-rotate(180deg) brightness(1.25);
+  margin-right: 8px;
+}
+
+.brand-nav-text {
+  font-family: var(--font-sf-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-link {
+  color: #cccccc;
+  font-size: 12px;
+  font-weight: 400;
+  transition: color 0.15s ease;
+  letter-spacing: -0.01em;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+}
+
+.nav-cta-btn {
+  background: var(--apple-blue);
+  color: #ffffff;
+  border-radius: var(--radius-pill);
+  padding: 4px 14px;
+  font-size: 12px;
+  font-weight: 400;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-cta-btn:active {
+  transform: scale(0.95);
+  background: var(--apple-blue-hover);
+}
+
+
+
+/* ── HERO TILE (DARK CANVASES - 2-COLUMN SPLIT) ── */
+.hero-tile {
+  background: var(--apple-tile-dark);
+  color: #ffffff;
+  padding: 90px 0 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.hero-text-col {
+  text-align: left;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-sf-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--apple-blue-dark);
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+}
+
+.hero-h1 {
+  font-family: var(--font-sf-display);
+  font-size: clamp(44px, 5.8vw, 76px);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  color: #ffffff;
+  margin-bottom: 22px;
+}
+
+.hero-lead {
+  font-size: clamp(17px, 1.8vw, 21px);
+  font-weight: 400;
+  line-height: 1.45;
+  color: #cccccc;
+  margin-bottom: 24px;
+  letter-spacing: -0.015em;
+}
+
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+/* HERO SOCIAL PROOF USER AVATARS BADGE */
+.hero-users-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 6px 16px 6px 8px;
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(10px);
+}
+
+.avatar-stack {
+  display: flex;
+  align-items: center;
+}
+
+.avatar-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--apple-tile-dark);
+  margin-left: -10px;
+  object-fit: cover;
+}
+
+.avatar-img:first-child {
+  margin-left: 0;
+}
+
+.users-badge-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: #e5e5e7;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: -0.01em;
+}
+
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34c759;
+  box-shadow: 0 0 10px #34c759;
+}
+
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+
+/* APPLE SIGNATURE PILL BUTTONS */
+.btn-apple-primary {
+  background: var(--apple-blue);
+  color: #ffffff;
+  font-family: var(--font-sf-text);
+  font-size: 17px;
+  font-weight: 400;
+  padding: 11px 24px;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-apple-primary:active {
+  transform: scale(0.95);
+  background: var(--apple-blue-hover);
+}
+
+.btn-apple-secondary {
+  background: transparent;
+  color: var(--apple-blue-dark);
+  font-family: var(--font-sf-text);
+  font-size: 17px;
+  font-weight: 400;
+  padding: 11px 24px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--apple-blue-dark);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s ease;
+}
+
+.btn-apple-secondary:active {
+  transform: scale(0.95);
+  background: rgba(41, 151, 255, 0.1);
+}
+
+.btn-apple-green {
+  background: #34c759;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: var(--radius-pill);
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 18px rgba(52, 199, 89, 0.4);
+}
+
+.btn-apple-green:hover {
+  background: #2cb04d;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(52, 199, 89, 0.5);
+}
+
+.btn-apple-green:active {
+  transform: scale(0.95);
+}
+
+/* ── HERO VIDEO SHOWCASE (CLEAN DIRECT DISPLAY + 3D SCROLL ROTATION) ── */
+.hero-video-showcase {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.hero-video-player {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  display: block;
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 20px 60px 0px;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transform-origin: center center;
+}
+
+.mockup-signal-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--apple-blue-dark);
+  background: rgba(41, 151, 255, 0.15);
+  padding: 2px 6px;
+  border-radius: 4px;
+  float: right;
+}
+
+.mockup-entry {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #86868b;
+  margin: 8px 0;
+}
+
+.mockup-targets {
+  display: flex;
+  gap: 4px;
+}
+
+.mockup-target {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  padding: 3px 6px;
+  border-radius: 4px;
+  background: #2c2c2e;
+  color: #86868b;
+}
+
+.mockup-target.hit {
+  background: var(--apple-blue);
+  color: #ffffff;
+}
+
+.mockup-profit {
+  background: rgba(41, 151, 255, 0.1);
+  border: 1px solid rgba(41, 151, 255, 0.2);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mockup-profit-val {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--apple-blue-dark);
+}
+
+/* HERO STATS BAR */
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.hero-stat-val {
+  font-family: var(--font-sf-display);
+  font-size: 28px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.hero-stat-lbl {
+  font-size: 12px;
+  color: #86868b;
+  margin-top: 2px;
+}
+
+/* ── TILE 2: RESULTADOS REAIS (PARCHMENT CANVAS) ── */
+.tile-parchment {
+  background: var(--apple-parchment);
+  color: var(--apple-ink);
+  padding: 90px 0;
+}
+
+.section-headline {
+  font-family: var(--font-sf-display);
+  font-size: clamp(34px, 4.2vw, 56px);
+  font-weight: 600;
+  line-height: 1.07;
+  letter-spacing: -0.028em;
+  text-align: center;
+  color: var(--apple-ink);
+  margin-bottom: 14px;
+}
+
+.section-subcopy {
+  font-size: 19px;
+  color: var(--apple-ink-muted);
+  text-align: center;
+  max-width: 580px;
+  margin: 0 auto 60px;
+  line-height: 1.47;
+}
+
+.cards-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.apple-card {
+  background: var(--apple-canvas);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  border: 1px solid var(--apple-hairline-soft);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.25s ease;
+}
+
+.apple-card:hover {
+  transform: translateY(-4px);
+}
+
+.card-user-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.card-avatar-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--apple-canvas);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.verified-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--apple-blue);
+  background: rgba(0, 102, 204, 0.08);
+  padding: 2px 8px;
+  border-radius: 12px;
+  margin-top: 4px;
+}
+
+.trust-rating-stars {
+  display: flex;
+  gap: 2px;
+  color: #ffb800;
+  margin-top: 2px;
+}
+
+.card-quote {
+  font-size: 15px;
+  color: var(--apple-ink-light);
+  line-height: 1.55;
+  margin-bottom: 24px;
+}
+
+.card-footer {
+  padding-top: 18px;
+  border-top: 1px solid var(--apple-hairline-soft);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-pair {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--apple-ink-muted);
+}
+
+.card-roi {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--apple-blue);
+  letter-spacing: -0.02em;
+  background: rgba(0, 102, 204, 0.08);
+  padding: 4px 10px;
+  border-radius: 8px;
+}
+
+.trust-metrics-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  background: var(--apple-canvas);
+  border: 1px solid var(--apple-hairline);
+  padding: 16px 28px;
+  border-radius: var(--radius-pill);
+  margin-top: 36px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--apple-ink);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  flex-wrap: wrap;
+}
+
+.exchanges-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--apple-ink-muted);
+  letter-spacing: 0.1em;
+}
+
+/* ── TILE 3: COMO FUNCIONA (DARK TILE 2) ── */
+.tile-dark-2 {
+  background: var(--apple-tile-dark-2);
+  color: #ffffff;
+  padding: 90px 0;
+}
+
+.steps-stack {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.step-item {
+  background: #1f1f21;
+  border-radius: var(--radius-lg);
+  padding: 36px 28px;
+  border: 1px solid #2c2c2e;
+}
+
+.step-num {
+  font-family: var(--font-sf-display);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--apple-blue-dark);
+  margin-bottom: 16px;
+}
+
+.step-head {
+  font-family: var(--font-sf-display);
+  font-size: 21px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 12px;
+  letter-spacing: -0.015em;
+}
+
+.step-body {
+  font-size: 15px;
+  color: #cccccc;
+  line-height: 1.5;
+}
+
+/* ── TILE 4: TUDO INCLUÍDO (WHITE CANVAS) ── */
+.tile-white {
+  background: var(--apple-canvas);
+  color: var(--apple-ink);
+  padding: 90px 0;
+}
+
+.feats-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.feat-item {
+  background: var(--apple-parchment);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  border: 1px solid var(--apple-hairline-soft);
+  transition: transform 0.2s ease;
+}
+
+.feat-item:hover {
+  transform: translateY(-3px);
+}
+
+.feat-icon {
+  font-size: 24px;
+  margin-bottom: 14px;
+}
+
+.feat-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--apple-ink);
+  margin-bottom: 8px;
+}
+
+.feat-desc {
+  font-size: 14px;
+  color: var(--apple-ink-muted);
+  line-height: 1.45;
+}
+
+/* ── TILE 5: PLANOS / OFERTA (PARCHMENT CANVAS) ── */
+.tile-offer {
+  background: var(--apple-parchment);
+  color: var(--apple-ink);
+  padding: 90px 0;
+}
+
+/* Apple Store Utility Timer Card */
+.scarcity-bar {
+  background: var(--apple-canvas);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--apple-hairline);
+  padding: 12px 28px;
+  max-width: 520px;
+  margin: 0 auto 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.scarcity-lbl {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--apple-ink);
+  letter-spacing: -0.01em;
+}
+
+.scarcity-timer-digits {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--apple-blue);
+}
+
+.plans-wrapper {
+  max-width: 820px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.plan-card-apple {
+  background: var(--apple-canvas);
+  border-radius: var(--radius-lg);
+  padding: 40px 32px;
+  border: 1px solid var(--apple-hairline);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.plan-card-apple.featured {
+  border: 2px solid var(--apple-blue);
+}
+
+.plan-badge-apple {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--apple-blue);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.plan-title-apple {
+  font-family: var(--font-sf-display);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--apple-ink);
+  margin-bottom: 20px;
+  letter-spacing: -0.015em;
+}
+
+.plan-price-old-apple {
+  font-size: 13px;
+  color: var(--apple-ink-muted);
+  text-decoration: line-through;
+  margin-bottom: 4px;
+}
+
+.plan-price-val-apple {
+  font-family: var(--font-sf-display);
+  font-size: 44px;
+  font-weight: 600;
+  color: var(--apple-ink);
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.plan-price-sub-apple {
+  font-size: 13px;
+  color: var(--apple-ink-muted);
+  margin-top: 6px;
+  margin-bottom: 24px;
+}
+
+.plan-list-apple {
+  list-style: none;
+  border-top: 1px solid var(--apple-hairline-soft);
+  padding-top: 20px;
+  margin-bottom: 32px;
+}
+
+.plan-list-apple li {
+  font-size: 14px;
+  color: var(--apple-ink-light);
+  padding: 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.plan-list-apple li strong {
+  color: var(--apple-ink);
+}
+
+.check-dot {
+  color: var(--apple-blue);
+  font-weight: 600;
+}
+
+.guarantee-fineprint {
+  font-size: 12px;
+  color: var(--apple-ink-muted);
+  text-align: center;
+  margin-top: 12px;
+}
+
+/* ── TILE 6: PERGUNTAS FREQUENTES (DARK TILE 1) ── */
+.tile-faq {
+  background: var(--apple-tile-dark);
+  color: #ffffff;
+  padding: 90px 0;
+}
+
+.faq-apple-container {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.faq-apple-item {
+  border-bottom: 1px solid #272729;
+}
+
+.faq-apple-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  color: #ffffff;
+  text-align: left;
+  padding: 24px 0;
+  cursor: pointer;
+  font-family: var(--font-sf-display);
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-apple-btn:hover {
+  color: var(--apple-blue-dark);
+}
+
+.faq-icon {
+  font-size: 18px;
+  color: #86868b;
+  transition: transform 0.3s ease;
+}
+
+.faq-apple-item.active .faq-icon {
+  transform: rotate(45deg);
+  color: var(--apple-blue-dark);
+}
+
+.faq-apple-ans {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.faq-apple-ans p {
+  font-size: 16px;
+  color: #cccccc;
+  line-height: 1.5;
+  padding-bottom: 24px;
+}
+
+.faq-apple-item.active .faq-apple-ans {
+  max-height: 300px;
+}
+
+/* ── BOTTOM CTA ── */
+.tile-cta {
+  background: var(--apple-canvas);
+  color: var(--apple-ink);
+  padding: 110px 0;
+  text-align: center;
+}
+
+/* ── FOOTER ── */
+.apple-footer {
+  background: var(--apple-parchment);
+  color: var(--apple-ink-muted);
+  font-size: 12px;
+  padding: 48px 0;
+  border-top: 1px solid var(--apple-hairline);
+  line-height: 1.5;
+}
+
+.apple-footer-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-legal {
+  max-width: 600px;
+  font-size: 11px;
+  color: var(--apple-ink-muted);
+}
+
+/* ── COPY.JSX / GREYLOOM STYLE LINE REVEAL ANIMATION ── */
+.copy-line-wrapper {
+  overflow: hidden;
+  display: block;
+}
+
+.copy-line-content {
+  display: block;
+  transform: translateY(100%);
+  will-change: transform;
+}
+
+/* GSAP Scroll Reveal */
+.gsap-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: opacity, transform;
+}
+
+/* ── APPLE EXIT INTENT MODAL POPUP ── */
+.exit-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.exit-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.exit-modal-box {
+  background: #ffffff;
+  color: var(--apple-ink);
+  border-radius: 28px;
+  max-width: 480px;
+  width: 100%;
+  padding: 40px 32px;
+  position: relative;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  transform: scale(0.92);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.exit-overlay.active .exit-modal-box {
+  transform: scale(1);
+}
+
+.exit-close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--apple-parchment);
+  border: none;
+  font-size: 16px;
+  color: var(--apple-ink-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.exit-close-btn:hover {
+  background: var(--apple-hairline);
+  color: var(--apple-ink);
+}
+
+.exit-badge-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--apple-blue);
+  background: rgba(0, 102, 204, 0.08);
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+
+.exit-title {
+  font-family: var(--font-sf-display);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--apple-ink);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+
+.exit-desc {
+  font-size: 15px;
+  color: var(--apple-ink-muted);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.exit-benefits-list {
+  list-style: none;
+  text-align: left;
+  background: var(--apple-parchment);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+
+.exit-benefits-list li {
+  font-size: 13px;
+  color: var(--apple-ink-light);
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.exit-benefits-list li strong {
+  color: var(--apple-ink);
+}
+
+.exit-cta-btn {
+  background: var(--apple-blue);
+  color: #ffffff;
+  font-family: var(--font-sf-text);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  display: block;
+  width: 100%;
+  text-align: center;
+  transition: transform 0.2s ease, background 0.2s ease;
+  box-shadow: 0 8px 25px rgba(0, 102, 204, 0.3);
+}
+
+.exit-cta-btn:active {
+  transform: scale(0.96);
+  background: var(--apple-blue-hover);
+}
+
+.exit-dismiss-link {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--apple-ink-muted);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.exit-dismiss-link:hover {
+  color: var(--apple-ink);
+}
+
+/* ── COMPREHENSIVE 100% MOBILE & TABLET OPTIMIZATION ── */
+html, body {
+  overflow-x: hidden !important;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  body {
+    padding-top: 60px;
+  }
+  
+  .sticky-countdown-bar {
+    height: 60px;
+  }
+  
+  .sticky-timer-info {
+    gap: 8px;
+    font-size: 13px;
+  }
+  
+  .sticky-timer-text {
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .sticky-timer-digits {
+    font-size: 16px;
+    padding: 4px 10px;
+    border-radius: 8px;
+  }
+  
+  .sticky-cta-btn {
+    font-size: 12px;
+    padding: 7px 16px;
+    white-space: nowrap;
+  }
+  
+  .hero-tile {
+    padding: 40px 0 60px;
+  }
+  
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  
+  .hero-text-col {
+    text-align: center;
+  }
+  
+  .hero-eyebrow {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+  
+  .hero-h1 {
+    font-size: clamp(32px, 8.5vw, 48px);
+    margin-bottom: 16px;
+    line-height: 1.08;
+  }
+  
+  .hero-lead {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .btn-apple-primary, .btn-apple-secondary, .btn-apple-green {
+    width: 100%;
+    justify-content: center;
+    font-size: 16px;
+    padding: 14px 20px;
+    min-height: 48px;
+  }
+  
+  .hero-users-badge {
+    margin: 0 auto 28px;
+    padding: 5px 14px 5px 6px;
+    font-size: 12px;
+  }
+  
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+  }
+  
+  .hero-stat-val {
+    font-size: 20px;
+  }
+  
+  .hero-stat-lbl {
+    font-size: 11px;
+  }
+  
+  .hero-video-showcase {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .hero-video-player {
+    border-radius: 16px;
+  }
+  
+  .cards-grid-3, .steps-stack, .plans-wrapper {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .feats-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  
+  .apple-card, .step-item, .feat-item, .plan-card-apple {
+    padding: 24px 18px;
+    border-radius: 20px;
+  }
+  
+  .trust-metrics-strip {
+    flex-direction: column;
+    gap: 10px;
+    padding: 16px 18px;
+    border-radius: 18px;
+    text-align: center;
+  }
+  
+  .trust-metrics-strip span:nth-child(even) {
+    display: none;
+  }
+  
+  .scarcity-bar {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+    padding: 12px 18px;
+    border-radius: 16px;
+  }
+  
+  .plan-price-val-apple {
+    font-size: 38px;
+  }
+  
+  .nav-links {
+    display: none;
+  }
+}
+
+@media (max-width: 580px) {
+  .sticky-timer-text {
+    display: none;
+  }
+  
+  .sticky-countdown-wrap {
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .feats-grid-4 {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-h1 {
+    font-size: clamp(30px, 9vw, 40px);
+  }
+  
+  .hero-stats {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .exit-modal-box {
+    padding: 28px 18px;
+    border-radius: 24px;
+  }
+  
+  .exit-title {
+    font-size: 20px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- STICKY TOP COUNTDOWN BAR (FIXED ON SCROLL) -->
+<div class="sticky-countdown-bar">
+  <div class="wrap sticky-countdown-wrap">
+    <div class="sticky-timer-info">
+      <span class="sticky-timer-text">DESCONTO DE LANÇAMENTO EXPIRA EM:</span>
+      <span class="sticky-timer-digits" id="sticky-timer-display">00h 14m 59s</span>
+    </div>
+    <a href="#planos" class="sticky-cta-btn">Garantir Desconto</a>
+  </div>
+</div>
+
+<!-- GLOBAL APPLE BLACK BAR -->
+<header class="global-nav">
+  <div class="wrap global-nav-wrap">
+    <a href="#" class="brand-nav">
+      <img src="./acs-logo.png" alt="ACS System Logo" class="brand-logo-img"/>
+      <span class="brand-nav-text">ACS System</span>
+    </a>
+    <div class="nav-links">
+      <a href="#resultados" class="nav-link">Resultados</a>
+      <a href="#como-funciona" class="nav-link">Como funciona</a>
+      <a href="#planos" class="nav-link">Planos</a>
+      <a href="https://chk.eduzz.com/1488759" class="nav-cta-btn">Assinar</a>
+    </div>
+  </div>
+</header>
+
+
+
+<!-- TILE 1: HERO (DARK CANVASES - 2 COLUMN SPLIT) -->
+<section class="hero-tile">
+  <div class="wrap">
+    <div class="hero-grid">
+      
+      <!-- LEFT COLUMN: TEXT & CTA -->
+      <div class="hero-text-col">
+        <div class="hero-eyebrow gsap-reveal">ACS SYSTEM — Sinais Inteligentes com IA</div>
+        <h1 class="hero-h1 gsap-reveal">O ACS SYSTEM opera cripto por você.</h1>
+        <p class="hero-lead gsap-reveal">
+          Receba entradas de alta precisão com targets automáticos. O sistema ACS SYSTEM analisa o mercado em tempo real — você só abre a operação.
+        </p>
+
+        <div class="hero-cta-group gsap-reveal">
+          <a href="https://chk.eduzz.com/1488759" class="btn-apple-primary">
+            Começar agora
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <a href="#como-funciona" class="btn-apple-secondary">Como funciona</a>
+        </div>
+
+        <!-- SOCIAL PROOF AVATAR BADGE (BELOW BUTTONS) -->
+        <div class="hero-users-badge gsap-reveal">
+          <div class="avatar-stack">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&h=100&q=80" alt="Usuário 1" class="avatar-img"/>
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&h=100&q=80" alt="Usuário 2" class="avatar-img"/>
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&h=100&q=80" alt="Usuário 3" class="avatar-img"/>
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&h=100&q=80" alt="Usuário 4" class="avatar-img"/>
+          </div>
+          <div class="users-badge-text">
+            <span class="pulse-dot"></span>
+            + de 300 usuários ativos
+          </div>
+        </div>
+
+        <!-- HERO STATS -->
+        <div class="hero-stats gsap-reveal">
+          <div>
+            <div class="hero-stat-val">88%</div>
+            <div class="hero-stat-lbl">Win rate validados</div>
+          </div>
+          <div>
+            <div class="hero-stat-val">+1.141%</div>
+            <div class="hero-stat-lbl">Maior ROI registrado</div>
+          </div>
+          <div>
+            <div class="hero-stat-val">168+</div>
+            <div class="hero-stat-lbl">Membros lucrando</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: HERO VIDEO -->
+      <div class="hero-video-showcase gsap-reveal">
+        <video 
+          autoplay 
+          loop 
+          muted 
+          playsinline 
+          preload="metadata" 
+          class="hero-video-player">
+          <source src="./hero-video.mp4?v=2" type="video/mp4">
+        </video>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TILE 2: RESULTADOS REAIS (PARCHMENT CANVAS) -->
+<section class="tile-parchment" id="resultados">
+  <div class="wrap">
+    <h2 class="section-headline gsap-reveal">Resultados reais.</h2>
+    <p class="section-subcopy gsap-reveal">Pessoas reais que receberam os sinais e abriram as operações no aplicativo.</p>
+
+    <div class="cards-grid-3">
+      <!-- DEPOIMENTO 1 -->
+      <div class="apple-card gsap-reveal">
+        <div>
+          <div class="card-user-row">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&h=200&q=80" alt="Leo Dias" class="card-avatar-img"/>
+            <div>
+              <div class="card-name">Leo Dias</div>
+              <div class="card-location">São Paulo, SP</div>
+              <div class="verified-tag">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Operação Verificada
+              </div>
+            </div>
+          </div>
+          <div class="trust-rating-stars" style="margin-bottom:12px;">★★★★★</div>
+          <p class="card-quote">"Entrei com R$700 e minha banca chegou a R$4.099 seguindo os sinais. Os alvos foram batendo sozinhos. Nunca achei que seria tão simples."</p>
+        </div>
+        <div class="card-footer">
+          <div>
+            <div class="card-pair">BYBIT · XRP/USDT · 21x</div>
+            <div style="font-size:10px;color:var(--apple-ink-muted);margin-top:2px;">Entrada 1.4514 → Saída 1.8601</div>
+          </div>
+          <span class="card-roi">+584%</span>
+        </div>
+      </div>
+
+      <!-- DEPOIMENTO 2 -->
+      <div class="apple-card gsap-reveal">
+        <div>
+          <div class="card-user-row">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&h=200&q=80" alt="Eleven Lucas" class="card-avatar-img"/>
+            <div>
+              <div class="card-name">Eleven Lucas</div>
+              <div class="card-location">Rio de Janeiro, RJ</div>
+              <div class="verified-tag">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Operação Verificada
+              </div>
+            </div>
+          </div>
+          <div class="trust-rating-stars" style="margin-bottom:12px;">★★★★★</div>
+          <p class="card-quote">"A melhor decisão foi entrar para o ACS System. Os sinais são claros, você sabe exatamente onde entrar. Os alvos batem automático."</p>
+        </div>
+        <div class="card-footer">
+          <div>
+            <div class="card-pair">BINANCE · VET/USDT · 10x</div>
+            <div style="font-size:10px;color:var(--apple-ink-muted);margin-top:2px;">Entrada 0.04448 → Saída 0.04682</div>
+          </div>
+          <span class="card-roi">+49%</span>
+        </div>
+      </div>
+
+      <!-- DEPOIMENTO 3 -->
+      <div class="apple-card gsap-reveal">
+        <div>
+          <div class="card-user-row">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&h=200&q=80" alt="Cristhian Sandoval" class="card-avatar-img"/>
+            <div>
+              <div class="card-name">Cristhian Sandoval</div>
+              <div class="card-location">Fortaleza, CE</div>
+              <div class="verified-tag">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Operação Verificada
+              </div>
+            </div>
+          </div>
+          <div class="trust-rating-stars" style="margin-bottom:12px;">★★★★★</div>
+          <p class="card-quote">"Operei SAND com 20x seguindo o sinal e foi a +202%. O take profit realizou o lucro sem eu fazer nada. Excelente ferramenta."</p>
+        </div>
+        <div class="card-footer">
+          <div>
+            <div class="card-pair">BINANCE · SAND/USDT · 20x</div>
+            <div style="font-size:10px;color:var(--apple-ink-muted);margin-top:2px;">Entrada 0.6332 → Saída 0.6981</div>
+          </div>
+          <span class="card-roi">+202%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- HIGH TRUST AUDIT METRICS BAR -->
+    <div class="trust-metrics-strip gsap-reveal">
+      <span style="display:flex;align-items:center;gap:6px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--apple-blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        +R$ 1.4 Milhões em lucros gerados
+      </span>
+      <span>·</span>
+      <span style="display:flex;align-items:center;gap:6px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--apple-blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        4.200+ Operações no Alvo
+      </span>
+      <span>·</span>
+      <span style="display:flex;align-items:center;gap:6px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--apple-blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        100% Auditado em Bybit & Binance
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- TILE 3: COMO FUNCIONA (DARK TILE 2) -->
+<section class="tile-dark-2" id="como-funciona">
+  <div class="wrap">
+    <h2 class="section-headline gsap-reveal" style="color:#ffffff;">3 passos para lucrar.</h2>
+    <p class="section-subcopy gsap-reveal" style="color:#cccccc;">O aplicativo faz o trabalho pesado de análise gráfica por você.</p>
+
+    <div class="steps-stack">
+      <div class="step-item gsap-reveal">
+        <div class="step-num">01</div>
+        <h3 class="step-head">Receba o sinal no app</h3>
+        <p class="step-body">Nossa IA analisa RSI, MACD e EMA continuamente. O sinal surge com par, entrada, alavancagem e alvos definidos.</p>
+      </div>
+
+      <div class="step-item gsap-reveal">
+        <div class="step-num">02</div>
+        <h3 class="step-head">Abra a operação</h3>
+        <p class="step-body">Copie os dados na Bybit ou Binance. Leva menos de 2 minutos. Nosso curso incluso ensina a configurar tudo do zero.</p>
+      </div>
+
+      <div class="step-item gsap-reveal">
+        <div class="step-num">03</div>
+        <h3 class="step-head">Os alvos batem sozinhos</h3>
+        <p class="step-body">O app monitora o preço a cada 30 segundos. Quando um alvo é atingido, o lucro é realizado sem você precisar acompanhar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TILE 4: TUDO INCLUÍDO (WHITE CANVAS) -->
+<section class="tile-white">
+  <div class="wrap">
+    <h2 class="section-headline gsap-reveal">Um app completo.</h2>
+    <p class="section-subcopy gsap-reveal">Ferramentas avançadas desenhadas para simplificar suas operações.</p>
+
+    <div class="feats-grid-4">
+      <div class="feat-item gsap-reveal">
+        <div class="feat-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--apple-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        </div>
+        <h4 class="feat-title">Sinais com IA</h4>
+        <p class="feat-desc">Confluência contínua de RSI, MACD e EMA100/200.</p>
+      </div>
+
+      <div class="feat-item gsap-reveal">
+        <div class="feat-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--apple-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+        </div>
+        <h4 class="feat-title">11 Alvos por sinal</h4>
+        <p class="feat-desc">De 3% a 200%+. Verificados automaticamente.</p>
+      </div>
+
+      <div class="feat-item gsap-reveal">
+        <div class="feat-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--apple-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+        </div>
+        <h4 class="feat-title">Mercado ao vivo</h4>
+        <p class="feat-desc">Fear & Greed, dominância BTC e top movers.</p>
+      </div>
+
+      <div class="feat-item gsap-reveal">
+        <div class="feat-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--apple-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8.01" y2="16"></line><line x1="16" y1="16" x2="16.01" y2="16"></line></svg>
+        </div>
+        <h4 class="feat-title">Chat ACS System AI</h4>
+        <p class="feat-desc">Análise de pares e dúvidas a qualquer hora.</p>
+      </div>
+
+      <div class="feat-item gsap-reveal">
+        <div class="feat-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--apple-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+        </div>
+        <h4 class="feat-title">Academia ACS System</h4>
+        <p class="feat-desc">8 aulas em vídeo ensinando do zero ao primeiro lucro.</p>
+      </div>
+
+      <div class="feat-item gsap-reveal">
+        <div class="feat-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--apple-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+        </div>
+        <h4 class="feat-title">Preços em tempo real</h4>
+        <p class="feat-desc">BTC, ETH, SOL e múltiplos pares atualizados.</p>
+      </div>
+
+      <div class="feat-item gsap-reveal">
+        <div class="feat-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--apple-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path><path d="M19.1 4.9c3.9 3.9 3.9 10.2 0 14.1"></path></svg>
+        </div>
+        <h4 class="feat-title">Sinais manuais</h4>
+        <p class="feat-desc">Operações exclusivas enviadas por traders parceiros.</p>
+      </div>
+
+      <div class="feat-item gsap-reveal">
+        <div class="feat-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--apple-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        </div>
+        <h4 class="feat-title">Acesso seguro</h4>
+        <p class="feat-desc">Login universal para celular, tablet e computador.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TILE 5: PLANOS / OFERTA (PARCHMENT CANVAS) -->
+<section class="tile-offer" id="planos">
+  <div class="wrap">
+    <h2 class="section-headline gsap-reveal">Escolha seu plano.</h2>
+    <p class="section-subcopy gsap-reveal">Acesso completo a todas as funcionalidades desde o primeiro dia.</p>
+
+    <!-- SCARCITY TIMER BAR (APPLE STORE STYLE) -->
+    <div class="scarcity-bar gsap-reveal">
+      <span class="scarcity-lbl" style="display:flex;align-items:center;gap:6px;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--apple-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c0 5-5 7-5 11a5 5 0 0 0 10 0c0-4-5-6-5-11z"></path></svg>
+        Oferta de lançamento encerra em:
+      </span>
+      <span class="scarcity-timer-digits" id="timer-display">00h 14m 59s</span>
+    </div>
+
+    <div class="plans-wrapper">
+      <!-- SEMESTRAL -->
+      <div class="plan-card-apple gsap-reveal">
+        <div>
+          <span class="plan-badge-apple">Semestral</span>
+          <h3 class="plan-title-apple">6 meses de acesso</h3>
+          <div class="plan-price-old-apple">De R$ 1.164</div>
+          <div class="plan-price-val-apple">R$ 497</div>
+          <div class="plan-price-sub-apple">ou 12x de R$ 41,41 sem juros</div>
+
+          <ul class="plan-list-apple">
+            <li><span class="check-dot">✓</span> Sinais IA (RSI · MACD · EMA)</li>
+            <li><span class="check-dot">✓</span> 11 alvos automáticos por sinal</li>
+            <li><span class="check-dot">✓</span> Mercado e preços ao vivo</li>
+            <li><span class="check-dot">✓</span> Chat ACS System AI 24/7</li>
+            <li><span class="check-dot">✓</span> Academia ACS System</li>
+          </ul>
+        </div>
+        <div>
+          <a href="https://chk.eduzz.com/1488759" class="btn-apple-primary" style="width:100%;justify-content:center;">Assinar Semestral</a>
+          <div class="guarantee-fineprint" style="display:flex;align-items:center;justify-content:center;gap:4px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            Garantia de 7 dias
+          </div>
+        </div>
+      </div>
+
+      <!-- ANUAL -->
+      <div class="plan-card-apple featured gsap-reveal">
+        <div>
+          <span class="plan-badge-apple" style="display:inline-flex;align-items:center;gap:4px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--apple-blue)" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            Melhor Valor
+          </span>
+          <h3 class="plan-title-apple">12 meses de acesso</h3>
+          <div class="plan-price-old-apple">De R$ 2.328</div>
+          <div class="plan-price-val-apple" style="color:var(--apple-blue);">R$ 697</div>
+          <div class="plan-price-sub-apple">ou 12x de R$ 58,08 sem juros</div>
+
+          <ul class="plan-list-apple">
+            <li><span class="check-dot">✓</span> Tudo do plano semestral</li>
+            <li><span class="check-dot">✓</span> <strong>12 meses garantidos</strong></li>
+            <li><span class="check-dot">✓</span> <strong>Bônus: Guia de gestão de risco</strong></li>
+            <li><span class="check-dot">✓</span> <strong>Bônus: Planilha de banca</strong></li>
+            <li><span class="check-dot">✓</span> Suporte prioritário</li>
+          </ul>
+        </div>
+        <div>
+          <a href="https://chk.eduzz.com/1488759" class="btn-apple-green" style="width:100%;justify-content:center;">Assinar Anual</a>
+          <div class="guarantee-fineprint" style="display:flex;align-items:center;justify-content:center;gap:4px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            Garantia de 7 dias · Economize R$ 1.631
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TILE 6: FAQ (DARK TILE 1) -->
+<section class="tile-faq">
+  <div class="wrap">
+    <h2 class="section-headline gsap-reveal" style="color:#ffffff;">Dúvidas frequentes.</h2>
+    <p class="section-subcopy gsap-reveal" style="color:#cccccc;margin-bottom:48px;">Tudo o que você precisa saber antes de começar.</p>
+
+    <div class="faq-apple-container">
+      <div class="faq-apple-item gsap-reveal">
+        <button class="faq-apple-btn" onclick="toggleAppleFaq(this)">
+          Preciso saber de cripto para usar o app?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-apple-ans">
+          <p>Não. O Alpha Cripto foi feito para iniciantes e experientes. Você recebe par, entrada, alavancagem e alvos prontos. A Academia Alpha Cripto ensina tudo do zero.</p>
+        </div>
+      </div>
+
+      <div class="faq-apple-item gsap-reveal">
+        <button class="faq-apple-btn" onclick="toggleAppleFaq(this)">
+          Os targets realmente batem sozinhos?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-apple-ans">
+          <p>O servidor verifica o preço real a cada 30 segundos. Quando cruza um alvo, o app registra automaticamente. Para fechar na exchange, ensinamos a configurar Take Profits automáticos.</p>
+        </div>
+      </div>
+
+      <div class="faq-apple-item gsap-reveal">
+        <button class="faq-apple-btn" onclick="toggleAppleFaq(this)">
+          Qual exchange devo usar?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-apple-ans">
+          <p>Bybit ou Binance Futuros. Ambas são gratuitas para criar conta. Os sinais são calibrados para futuros perpétuos USDT nessas plataformas.</p>
+        </div>
+      </div>
+
+      <div class="faq-apple-item gsap-reveal">
+        <button class="faq-apple-btn" onclick="toggleAppleFaq(this)">
+          Quanto capital preciso para começar?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-apple-ans">
+          <p>A partir de R$ 300 na exchange. Com alavancagem de 10x e gestão de risco correta já é suficiente.</p>
+        </div>
+      </div>
+
+      <div class="faq-apple-item gsap-reveal">
+        <button class="faq-apple-btn" onclick="toggleAppleFaq(this)">
+          Tem garantia de reembolso?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-apple-ans">
+          <p>Sim. Garantia de 7 dias pela Eduzz com devolução de 100% do valor sem questionamentos.</p>
+        </div>
+      </div>
+
+      <div class="faq-apple-item gsap-reveal">
+        <button class="faq-apple-btn" onclick="toggleAppleFaq(this)">
+          O acesso é pelo celular ou computador?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-apple-ans">
+          <p>Os dois. O Alpha Cripto é um app web responsivo que funciona em qualquer navegador no celular, tablet ou computador.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="tile-cta">
+  <div class="wrap">
+    <h2 class="section-headline gsap-reveal">Comece a operar com inteligência.</h2>
+    <p class="section-subcopy gsap-reveal">Acesse o app agora e receba seus primeiros sinais em minutos.</p>
+    <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;" class="gsap-reveal">
+      <a href="https://chk.eduzz.com/1488759" class="btn-apple-primary">Assinar Semestral — R$497</a>
+      <a href="https://chk.eduzz.com/1488759" class="btn-apple-secondary" style="display:inline-flex;align-items:center;gap:6px;">
+        Assinar Anual — R$697
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--apple-blue-dark)" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- APPLE FOOTER -->
+<footer class="apple-footer">
+  <div class="wrap apple-footer-wrap">
+    <div>Copyright © 2026 ACS System. Todos os direitos reservados.</div>
+    <div style="display:flex;gap:16px;">
+      <a href="#">Termos de Uso</a> · <a href="#">Política de Privacidade</a> · <a href="mailto:suporte@acssystem.com.br">Suporte</a>
+    </div>
+    <p class="footer-legal" style="display:flex;align-items:center;gap:6px;justify-content:center;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+      Trading de criptomoedas envolve alto risco de perda. Resultados passados não garantem resultados futuros. Invista apenas o que pode perder. Esta plataforma não oferece consultoria de investimentos regulada.
+    </p>
+  </div>
+</footer>
+
+<!-- EXIT INTENT MODAL POPUP -->
+<div class="exit-overlay" id="exit-modal">
+  <div class="exit-modal-box">
+    <button class="exit-close-btn" onclick="closeExitModal()" aria-label="Fechar">✕</button>
+    <span class="exit-badge-tag" style="display:inline-flex;align-items:center;gap:4px;">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--apple-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c0 5-5 7-5 11a5 5 0 0 0 10 0c0-4-5-6-5-11z"></path></svg>
+      ESPERA! ÚLTIMA CHANCE
+    </span>
+    <h3 class="exit-title">Garanta o seu desconto antes de sair.</h3>
+    <p class="exit-desc">Não perca os próximos sinais de inteligência artificial. Assine agora com valor promocional de lançamento:</p>
+    
+    <ul class="exit-benefits-list">
+      <li><span class="check-dot">✓</span> <strong>Sinais IA 24/7</strong> com alvos automáticos</li>
+      <li><span class="check-dot">✓</span> <strong>7 dias de garantia</strong> 100% incondicional</li>
+      <li><span class="check-dot">✓</span> <strong>Bônus:</strong> Guia de Gestão de Risco incluso</li>
+    </ul>
+
+    <a href="https://chk.eduzz.com/1488759" class="exit-cta-btn" onclick="closeExitModal()">Garantir Desconto & Bônus Agora</a>
+    <span class="exit-dismiss-link" onclick="closeExitModal()">Não obrigado, prefiro continuar sem os sinais</span>
+  </div>
+</div>
+
+<script>
+// ── COINGECKO LIVE PRICE ──
+async function fetchPrice() {
+  try {
+    const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd");
+    const data = await res.json();
+    if (data.bitcoin && data.bitcoin.usd) {
+      document.getElementById("sc-btc").textContent = "$" + data.bitcoin.usd.toLocaleString("en-US");
+    }
+  } catch(e){}
+}
+window.addEventListener("load", () => {
+  setTimeout(fetchPrice, 800);
+});
+
+// ── FAQ TOGGLE ──
+function toggleAppleFaq(btn) {
+  const item = btn.closest(".faq-apple-item");
+  const active = item.classList.contains("active");
+  document.querySelectorAll(".faq-apple-item.active").forEach(i => i.classList.remove("active"));
+  if (!active) item.classList.add("active");
+}
+
+// ── COUNTDOWN TIMER ──
+function startScarcityTimer() {
+  const KEY = "apple_alpha_timer";
+  let end = localStorage.getItem(KEY);
+  if (!end || Date.now() > parseInt(end, 10)) {
+    end = Date.now() + 14 * 60 * 1000 + 59 * 1000;
+    localStorage.setItem(KEY, end.toString());
+  } else {
+    end = parseInt(end, 10);
+  }
+
+  function tick() {
+    let diff = end - Date.now();
+    if (diff <= 0) {
+      end = Date.now() + 14 * 60 * 1000 + 59 * 1000;
+      localStorage.setItem(KEY, end.toString());
+      diff = 14 * 60 * 1000 + 59 * 1000;
+    }
+    const h = Math.floor(diff / (1000 * 60 * 60));
+    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((diff % (1000 * 60)) / 1000);
+    const display = document.getElementById("timer-display");
+    const stickyDisplay = document.getElementById("sticky-timer-display");
+    const formatted = `${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}m ${String(s).padStart(2,'0')}s`;
+    if (display) display.textContent = formatted;
+    if (stickyDisplay) stickyDisplay.textContent = formatted;
+  }
+  tick();
+  setInterval(tick, 1000);
+}
+window.addEventListener("load", startScarcityTimer);
+
+// ── EXIT INTENT POPUP LOGIC ──
+function initExitIntent() {
+  const EXIT_KEY = "alpha_cripto_exit_shown";
+  let hasShown = sessionStorage.getItem(EXIT_KEY);
+
+  function showExitModal() {
+    if (hasShown) return;
+    const modal = document.getElementById("exit-modal");
+    if (modal) {
+      modal.classList.add("active");
+      hasShown = "true";
+      sessionStorage.setItem(EXIT_KEY, "true");
+    }
+  }
+
+  document.addEventListener("mouseleave", (e) => {
+    if (e.clientY <= 10) {
+      showExitModal();
+    }
+  });
+
+  setTimeout(() => {
+    if (!hasShown && window.scrollY > 300) {
+      showExitModal();
+    }
+  }, 35000);
+}
+
+function closeExitModal() {
+  const modal = document.getElementById("exit-modal");
+  if (modal) {
+    modal.classList.remove("active");
+  }
+}
+
+window.addEventListener("load", initExitIntent);
+
+// ── EXACT COPY.JSX / GREYLOOM LINE REVEAL SCROLL ANIMATION ──
+function initCopyTextAnimation() {
+  if (typeof gsap === "undefined") return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const textSelectors = [
+    ".hero-h1",
+    ".hero-lead",
+    ".hero-eyebrow",
+    ".section-headline",
+    ".section-subcopy",
+    ".card-quote",
+    ".step-head",
+    ".step-body",
+    ".feat-title",
+    ".feat-desc",
+    ".plan-title-apple",
+    ".faq-apple-btn",
+    ".exit-title",
+    ".exit-desc"
+  ];
+
+  textSelectors.forEach(selector => {
+    document.querySelectorAll(selector).forEach(el => {
+      if (el.dataset.copyAnimated) return;
+      el.dataset.copyAnimated = "true";
+
+      const originalHTML = el.innerHTML;
+      el.innerHTML = `<span class="copy-line-wrapper"><span class="copy-line-content">${originalHTML}</span></span>`;
+      const lineContent = el.querySelector(".copy-line-content");
+
+      gsap.set(lineContent, { y: "100%" });
+
+      gsap.to(lineContent, {
+        y: "0%",
+        duration: 1,
+        stagger: 0.1,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 80%",
+          once: true
+        }
+      });
+    });
+  });
+
+  // Base element reveal
+  document.querySelectorAll(".gsap-reveal").forEach(el => {
+    gsap.to(el, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: el,
+        start: "top 88%",
+        once: true
+      }
+    });
+  });
+}
+
+// ── 3D HERO VIDEO SMOOTH SCROLL ROTATION SYNCHRONIZATION ──
+function initVideoScrollSync() {
+  if (typeof gsap === "undefined") return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const videoPlayer = document.querySelector(".hero-video-player");
+  if (videoPlayer) {
+    gsap.fromTo(videoPlayer,
+      {
+        rotationY: 0,
+        rotationX: 0,
+        rotationZ: 0,
+        scale: 1
+      },
+      {
+        rotationY: -22,
+        rotationX: 15,
+        rotationZ: -4,
+        scale: 0.90,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".hero-tile",
+          start: "top top",
+          end: "bottom 10%",
+          scrub: 0.4,
+          invalidateOnRefresh: true
+        }
+      }
+    );
+  }
+}
+
+window.addEventListener("DOMContentLoaded", initCopyTextAnimation);
+window.addEventListener("load", () => {
+  initVideoScrollSync();
+  if (typeof ScrollTrigger !== "undefined") {
+    ScrollTrigger.refresh();
+  }
+});
+</script>
+</body>
+</html>
